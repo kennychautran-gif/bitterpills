@@ -38,8 +38,9 @@
         .nav-left, .nav-right { flex: 1; display: flex; gap: 40px; font-size: 13px; font-weight: 500; letter-spacing: 1.5px; }
         .nav-right { justify-content: flex-end; }
         .mobile-menu { display: none; font-size: 20px; cursor: pointer; color: var(--text-main); }
+        .mobile-cart { display: none; } /* Đã di chuyển lên đây để không gây lỗi đè CSS trên Mobile */
         
-        /* CẬP NHẬT LOGO ĐỂ LUÔN CANH GIỮA TRONG KHUNG CẮT (CROP) */
+        /* CẬP NHẬT LOGO CHÍNH XÁC */
         .logo { flex: 1; text-align: center; display: flex; justify-content: center; align-items: center; }
         .logo a { display: flex; justify-content: center; align-items: center; height: 45px; overflow: hidden; }
         .logo img { width: 180px; height: 100px; object-fit: cover; object-position: center; display: block; transition: transform 0.4s ease; mix-blend-mode: screen; }
@@ -124,21 +125,27 @@
             .lookbook-text { padding: 60px 40px; border-left: none; border-top: 1px solid var(--border-color);}
         }
         
-        /* GIAO DIỆN ĐIỆN THOẠI */
+        /* GIAO DIỆN ĐIỆN THOẠI ĐÃ ĐƯỢC FIX LỆCH LOGO */
         @media (max-width: 600px) {
-            header { padding: 15px 20px; top: 10px; width: 100%; box-sizing: border-box;}
+            /* Header cho mobile sử dụng relative để làm gốc cho Logo absolute */
+            header { padding: 15px 20px; top: 10px; width: 100%; box-sizing: border-box; position: relative;}
             .nav-left, .nav-right { display: none; }
             
-            /* Chia tỷ lệ 3 phần trên Header cho điện thoại */
-            .mobile-menu { display: block; flex: 1; text-align: left; }
-            .logo { flex: 2; justify-content: center; }
-            .mobile-cart { display: block; flex: 1; text-align: right; font-family: 'Oswald', sans-serif; font-size: 13px; letter-spacing: 1px;}
+            .mobile-menu { display: block; flex: 1; text-align: left; margin-top: 5px; z-index: 10;}
+            .mobile-cart { display: block; flex: 1; text-align: right; font-family: 'Oswald', sans-serif; font-size: 13px; letter-spacing: 1px; margin-top: 5px; z-index: 10;}
             
-            /* Tinh chỉnh Logo nhỏ lại trên màn hình di động */
-            .logo a { height: 35px; }
-            .logo img { width: 140px; height: 80px; } 
+            /* Logo: Ép vị trí tuyệt đối ở chính giữa màn hình (Left 50%) */
+            .logo { position: absolute; left: 50%; transform: translateX(-50%); width: auto; z-index: 5; display: flex; justify-content: center; }
+            .logo a { height: auto; display: flex; align-items: center; justify-content: center; }
+            .logo img { width: 110px; height: auto; object-fit: contain; mix-blend-mode: screen;} 
 
-            /* Các phần khác */
+            .hero-bg { 
+                background-size: contain; 
+                background-repeat: no-repeat;
+                background-position: center 40%;
+            }
+            .hero { padding-bottom: 120px; } 
+
             .section-title { font-size: 28px; margin: 80px 0 40px; }
             .hero-content .btn-shop { font-size: 13px; padding: 10px 25px; }
             .container { padding: 0 15px; }
@@ -148,9 +155,9 @@
             .lookbook-text h2 { font-size: 3rem; }
             footer { flex-direction: column; gap: 40px; padding: 50px 20px 20px; text-align: center; } 
             .footer-col h4 { margin-bottom: 15px; }
+            
             #sound-toggle { bottom: 15px; right: 15px; padding: 8px 12px; font-size: 10px; }
         }
-        .mobile-cart { display: none; }
     </style>
 </head>
 <body>
@@ -180,6 +187,7 @@
             <a href="#" class="hover-sound">LOGIN</a>
             <a href="#" class="hover-sound">CART [0]</a>
         </div>
+        <!-- Giỏ hàng Mobile đã được hiển thị để cân bằng layout -->
         <div class="mobile-cart"><a href="#" class="hover-sound">CART [0]</a></div>
     </header>
 
