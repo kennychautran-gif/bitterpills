@@ -39,15 +39,15 @@
         .nav-right { justify-content: flex-end; }
         .mobile-menu { display: none; font-size: 20px; cursor: pointer; color: var(--text-main); }
         
-        /* CẬP NHẬT LOGO CHUẨN VỚI LOGO_2.PNG */
+        /* CẬP NHẬT LOGO ĐỂ LUÔN CANH GIỮA TRONG KHUNG CẮT (CROP) */
         .logo { flex: 1; text-align: center; display: flex; justify-content: center; align-items: center; }
-        .logo a { display: inline-block; }
-        .logo img { width: 160px; height: auto; display: block; transition: transform 0.4s ease; }
+        .logo a { display: flex; justify-content: center; align-items: center; height: 45px; overflow: hidden; }
+        .logo img { width: 180px; height: 100px; object-fit: cover; object-position: center; display: block; transition: transform 0.4s ease; mix-blend-mode: screen; }
         .logo a:hover img { transform: scale(1.05); }
 
         /* HERO SECTION */
         .hero { height: 100vh; position: relative; display: flex; flex-direction: column; align-items: center; justify-content: flex-end; padding-bottom: 80px; background-color: #000; overflow: hidden; }
-        .hero-bg { position: absolute; top: -2%; left: -2%; width: 104%; height: 104%; background-image: url('flame.gif'); background-size: cover; background-position: center; will-change: transform, opacity, filter; } /* Đổi lại thành flame.gif dựa trên source bạn gửi lần trước cho file gif lửa */
+        .hero-bg { position: absolute; top: -2%; left: -2%; width: 104%; height: 104%; background-image: url('flame.gif'); background-size: cover; background-position: center; will-change: transform, opacity, filter; }
         .hero-bg.base { z-index: 1; filter: contrast(1.1); }
         .hero-bg.overlay-1 { z-index: 2; mix-blend-mode: screen; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 45%, black 60%, black 100%); mask-image: linear-gradient(to bottom, transparent 0%, transparent 45%, black 60%, black 100%); animation: heatRefraction 3.5s infinite alternate ease-in-out; }
         .hero-bg.overlay-2 { z-index: 3; mix-blend-mode: color-dodge; -webkit-mask-image: linear-gradient(to bottom, transparent 0%, transparent 50%, black 65%, black 100%); mask-image: linear-gradient(to bottom, transparent 0%, transparent 50%, black 65%, black 100%); animation: thermalPulse 2s infinite alternate ease-in-out; }
@@ -116,40 +116,38 @@
             border-color: var(--orange);
         }
 
-        /* Responsive Mobile Styles */
+        /* Responsive */
         @media (max-width: 1024px) {
             .product-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
             .lookbook-split { flex-direction: column; height: auto; }
             .lookbook-img { height: 500px; }
             .lookbook-text { padding: 60px 40px; border-left: none; border-top: 1px solid var(--border-color);}
         }
+        
+        /* GIAO DIỆN ĐIỆN THOẠI */
         @media (max-width: 600px) {
-            /* Header Mobile */
-            header { padding: 15px 20px; top: 10px; }
-            .nav-left, .nav-right { display: none; } /* Ẩn menu điều hướng trên mobile */
-            .mobile-menu { display: block; flex: 1; }
-            .logo { justify-content: center; flex: 2; }
-            .logo img { width: 120px; } /* Giảm nhẹ kích thước logo trên mobile */
+            header { padding: 15px 20px; top: 10px; width: 100%; box-sizing: border-box;}
+            .nav-left, .nav-right { display: none; }
+            
+            /* Chia tỷ lệ 3 phần trên Header cho điện thoại */
+            .mobile-menu { display: block; flex: 1; text-align: left; }
+            .logo { flex: 2; justify-content: center; }
             .mobile-cart { display: block; flex: 1; text-align: right; font-family: 'Oswald', sans-serif; font-size: 13px; letter-spacing: 1px;}
             
-            /* Typography Mobile */
+            /* Tinh chỉnh Logo nhỏ lại trên màn hình di động */
+            .logo a { height: 35px; }
+            .logo img { width: 140px; height: 80px; } 
+
+            /* Các phần khác */
             .section-title { font-size: 28px; margin: 80px 0 40px; }
             .hero-content .btn-shop { font-size: 13px; padding: 10px 25px; }
-
-            /* Grid 1 cột trên Mobile để nhìn rõ sản phẩm */
             .container { padding: 0 15px; }
             .product-grid { grid-template-columns: 1fr; gap: 30px; margin-bottom: 80px; }
-            
-            /* Lookbook Mobile */
-            .lookbook-img { height: 400px; } /* Giảm chiều cao ảnh lookbook */
-            .lookbook-text { padding: 40px 20px; align-items: center; text-align: center; } /* Căn giữa text lookbook trên mobile */
+            .lookbook-img { height: 400px; } 
+            .lookbook-text { padding: 40px 20px; align-items: center; text-align: center; } 
             .lookbook-text h2 { font-size: 3rem; }
-            
-            /* Footer Mobile */
-            footer { flex-direction: column; gap: 40px; padding: 50px 20px 20px; text-align: center; } /* Xếp dọc footer và căn giữa */
+            footer { flex-direction: column; gap: 40px; padding: 50px 20px 20px; text-align: center; } 
             .footer-col h4 { margin-bottom: 15px; }
-            
-            /* Nút Âm Thanh Mobile */
             #sound-toggle { bottom: 15px; right: 15px; padding: 8px 12px; font-size: 10px; }
         }
         .mobile-cart { display: none; }
@@ -175,7 +173,7 @@
             <a href="#" class="hover-sound">JACKETS</a>
         </div>
         <div class="logo">
-            <a href="#"><img src="logo_2.png" alt="Bitter Pills"></a>
+            <a href="#"><img src="e2a59b9b.jpeg" alt="Bitter Pills"></a>
         </div>
         <div class="nav-right">
             <a href="#" class="hover-sound">SEARCH</a>
@@ -186,7 +184,6 @@
     </header>
 
     <section class="hero">
-        <!-- Đã sửa lại đúng đường dẫn ảnh flame.gif -->
         <div class="hero-bg base"></div>
         <div class="hero-bg overlay-1"></div>
         <div class="hero-bg overlay-2"></div>
@@ -282,15 +279,12 @@
         const soundToggleBtn = document.getElementById('sound-toggle');
         const clickSound = document.getElementById('clickSound');
         
-        // Cài đặt âm lượng ban đầu
-        bgMusic.volume = 0.05; 
+        bgMusic.volume = 0.025; 
         let isMusicPlaying = false;
-        let isMuted = true; // Ban đầu để mute để tránh vi phạm chính sách autoplay
+        let isMuted = true;
 
-        // Hàm bật/tắt nhạc khi click vào nút
         soundToggleBtn.addEventListener('click', () => {
             if (isMuted) {
-                // Bật nhạc
                 bgMusic.play().then(() => {
                     isMusicPlaying = true;
                     isMuted = false;
@@ -299,7 +293,6 @@
                     soundToggleBtn.style.borderColor = "var(--orange)";
                 }).catch(error => console.log("Không thể phát nhạc:", error));
             } else {
-                // Tắt nhạc
                 bgMusic.pause();
                 isMusicPlaying = false;
                 isMuted = true;
@@ -309,13 +302,12 @@
             }
         });
 
-        // Gắn sự kiện hover cho các thành phần (chỉ phát tiếng click khi nhạc đang ON)
         const hoverElements = document.querySelectorAll('.hover-sound');
         hoverElements.forEach(element => {
             element.addEventListener('mouseenter', () => {
-                if (!isMuted) { // Nếu đang bật nhạc mới phát tiếng click
+                if (!isMuted) {
                     const soundClone = clickSound.cloneNode(); 
-                    soundClone.volume = 0.1;
+                    soundClone.volume = 0.05; 
                     soundClone.play().catch(e => console.log("Lỗi tiếng click:", e));
                 }
             });
