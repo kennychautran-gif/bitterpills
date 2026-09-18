@@ -38,9 +38,9 @@
         .nav-left, .nav-right { flex: 1; display: flex; gap: 40px; font-size: 13px; font-weight: 500; letter-spacing: 1.5px; }
         .nav-right { justify-content: flex-end; }
         .mobile-menu { display: none; font-size: 20px; cursor: pointer; color: var(--text-main); }
-        .mobile-cart { display: none; } /* Đã di chuyển lên đây để không gây lỗi đè CSS trên Mobile */
+        .mobile-cart { display: none; }
         
-        /* CẬP NHẬT LOGO CHÍNH XÁC */
+        /* CẬP NHẬT LOGO BẢN DESKTOP */
         .logo { flex: 1; text-align: center; display: flex; justify-content: center; align-items: center; }
         .logo a { display: flex; justify-content: center; align-items: center; height: 45px; overflow: hidden; }
         .logo img { width: 180px; height: 100px; object-fit: cover; object-position: center; display: block; transition: transform 0.4s ease; mix-blend-mode: screen; }
@@ -117,7 +117,7 @@
             border-color: var(--orange);
         }
 
-        /* Responsive */
+        /* Responsive Desktop/Tablet */
         @media (max-width: 1024px) {
             .product-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
             .lookbook-split { flex-direction: column; height: auto; }
@@ -125,20 +125,22 @@
             .lookbook-text { padding: 60px 40px; border-left: none; border-top: 1px solid var(--border-color);}
         }
         
-        /* GIAO DIỆN ĐIỆN THOẠI ĐÃ ĐƯỢC FIX LỆCH LOGO */
+        /* ĐÃ FIX: GIAO DIỆN ĐIỆN THOẠI LOGO CENTER AN TOÀN */
         @media (max-width: 600px) {
-            /* Header cho mobile sử dụng relative để làm gốc cho Logo absolute */
-            header { padding: 15px 20px; top: 10px; width: 100%; box-sizing: border-box; position: relative;}
+            /* Header sử dụng flexbox thuần túy để căn chỉnh thay vì absolute */
+            header { padding: 15px 20px; top: 10px; width: 100%; box-sizing: border-box; display: flex; align-items: center; justify-content: space-between; }
             .nav-left, .nav-right { display: none; }
             
-            .mobile-menu { display: block; flex: 1; text-align: left; margin-top: 5px; z-index: 10;}
-            .mobile-cart { display: block; flex: 1; text-align: right; font-family: 'Oswald', sans-serif; font-size: 13px; letter-spacing: 1px; margin-top: 5px; z-index: 10;}
+            /* Tỷ lệ cân bằng: Menu và Cart bằng nhau (flex: 1), Logo to hơn ở giữa (flex: 2) */
+            .mobile-menu { display: block; flex: 1; text-align: left; z-index: 10; }
+            .mobile-cart { display: block; flex: 1; text-align: right; font-family: 'Oswald', sans-serif; font-size: 13px; letter-spacing: 1px; z-index: 10; }
             
-            /* Logo: Ép vị trí tuyệt đối ở chính giữa màn hình (Left 50%) */
-            .logo { position: absolute; left: 50%; transform: translateX(-50%); width: auto; z-index: 5; display: flex; justify-content: center; }
+            .logo { flex: 2; display: flex; justify-content: center; align-items: center; }
             .logo a { height: auto; display: flex; align-items: center; justify-content: center; }
-            .logo img { width: 110px; height: auto; object-fit: contain; mix-blend-mode: screen;} 
+            /* Thu nhỏ kích thước logo trên điện thoại để không bị tràn viền */
+            .logo img { width: 90px; height: auto; object-fit: contain; mix-blend-mode: screen; } 
 
+            /* Background Hero */
             .hero-bg { 
                 background-size: contain; 
                 background-repeat: no-repeat;
@@ -162,12 +164,10 @@
 </head>
 <body>
 
-    <!-- THẺ AUDIO CHỨA NHẠC NỀN -->
+    <!-- ÂM THANH -->
     <audio id="bgMusic" loop>
         <source src="flame.mp3" type="audio/mpeg">
     </audio>
-
-    <!-- THẺ AUDIO CHỨA HIỆU ỨNG ÂM THANH CLICK -->
     <audio id="clickSound" src="flame.mp3"></audio> 
     
     <div class="announcement">FALL WINTER "MADE UNTAMED"</div>
@@ -180,6 +180,7 @@
             <a href="#" class="hover-sound">JACKETS</a>
         </div>
         <div class="logo">
+            <!-- Ảnh Logo -->
             <a href="#"><img src="e2a59b9b.jpeg" alt="Bitter Pills"></a>
         </div>
         <div class="nav-right">
@@ -187,11 +188,12 @@
             <a href="#" class="hover-sound">LOGIN</a>
             <a href="#" class="hover-sound">CART [0]</a>
         </div>
-        <!-- Giỏ hàng Mobile đã được hiển thị để cân bằng layout -->
+        <!-- Giỏ hàng Mobile -->
         <div class="mobile-cart"><a href="#" class="hover-sound">CART [0]</a></div>
     </header>
 
     <section class="hero">
+        <!-- Ảnh Hero Background -->
         <div class="hero-bg base"></div>
         <div class="hero-bg overlay-1"></div>
         <div class="hero-bg overlay-2"></div>
@@ -281,7 +283,7 @@
     <!-- Nút Bật/Tắt Nhạc -->
     <button id="sound-toggle">SOUND OFF</button>
 
-    <!-- JAVASCRIPT CHO ÂM THANH -->
+    <!-- JS -->
     <script>
         const bgMusic = document.getElementById('bgMusic');
         const soundToggleBtn = document.getElementById('sound-toggle');
