@@ -116,7 +116,7 @@
             border-color: var(--orange);
         }
 
-        /* Responsive */
+        /* Responsive Mobile Styles */
         @media (max-width: 1024px) {
             .product-grid { grid-template-columns: repeat(2, 1fr); gap: 20px; }
             .lookbook-split { flex-direction: column; height: auto; }
@@ -124,13 +124,33 @@
             .lookbook-text { padding: 60px 40px; border-left: none; border-top: 1px solid var(--border-color);}
         }
         @media (max-width: 600px) {
-            header { padding: 20px; top: 10px; }
-            .nav-left, .nav-right { display: none; }
+            /* Header Mobile */
+            header { padding: 15px 20px; top: 10px; }
+            .nav-left, .nav-right { display: none; } /* Ẩn menu điều hướng trên mobile */
             .mobile-menu { display: block; flex: 1; }
             .logo { justify-content: center; flex: 2; }
+            .logo img { width: 120px; } /* Giảm nhẹ kích thước logo trên mobile */
             .mobile-cart { display: block; flex: 1; text-align: right; font-family: 'Oswald', sans-serif; font-size: 13px; letter-spacing: 1px;}
-            footer { flex-direction: column; gap: 50px; padding: 60px 20px 20px; }
-            .container { padding: 0 20px; }
+            
+            /* Typography Mobile */
+            .section-title { font-size: 28px; margin: 80px 0 40px; }
+            .hero-content .btn-shop { font-size: 13px; padding: 10px 25px; }
+
+            /* Grid 1 cột trên Mobile để nhìn rõ sản phẩm */
+            .container { padding: 0 15px; }
+            .product-grid { grid-template-columns: 1fr; gap: 30px; margin-bottom: 80px; }
+            
+            /* Lookbook Mobile */
+            .lookbook-img { height: 400px; } /* Giảm chiều cao ảnh lookbook */
+            .lookbook-text { padding: 40px 20px; align-items: center; text-align: center; } /* Căn giữa text lookbook trên mobile */
+            .lookbook-text h2 { font-size: 3rem; }
+            
+            /* Footer Mobile */
+            footer { flex-direction: column; gap: 40px; padding: 50px 20px 20px; text-align: center; } /* Xếp dọc footer và căn giữa */
+            .footer-col h4 { margin-bottom: 15px; }
+            
+            /* Nút Âm Thanh Mobile */
+            #sound-toggle { bottom: 15px; right: 15px; padding: 8px 12px; font-size: 10px; }
         }
         .mobile-cart { display: none; }
     </style>
